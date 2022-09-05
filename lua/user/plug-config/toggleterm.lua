@@ -26,7 +26,8 @@ toggleterm.setup({
 	},
 })
 
-function _G.set_terminal_keymaps()
+function set_terminal_keymaps()
+	print("Setting terminal Keymap")
   local opts = {noremap = true}
   vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
@@ -39,11 +40,31 @@ end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
+local lazygit = Terminal:new({ 
+		cmd = "lazygit",
+		hidden = true,
+		 on_open = function(term)
+			vim.cmd("startinsert!")
+			vim.api.nvim_buf_set_keymap(0, "t", '<esc>', "<cmd>close<CR>", {silent = false, noremap = true})
+			if vim.fn.mapcheck("<esc>", "t") ~= "" then
+			  vim.api.nvim_buf_del_keymap(term.bufnr, "t", "<esc>")
+			end
+		  end
+	})
 function _LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
+
+vim.api.nvim_set_keymap("n", [[<S-g>]], "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true, })
+
+local powershell = Terminal:new({cmd = "pwsh", hidden = true })
+
+function _PWSH_TOGGLE()
+	powershell:toggle()
+end
+
+vim.api.nvim_set_keymap("n", [[<S-t>]], "<cmd>lua _PWSH_TOGGLE()<CR>", {noremap = true, silent = true})
 
 local node = Terminal:new({ cmd = "node", hidden = true })
 
@@ -51,6 +72,7 @@ function _NODE_TOGGLE()
 	node:toggle()
 end
 
+vim.api.nvim_set_keymap("n", "<S-n>", "<cmd>lua _NODE_TOGGLE()<CR>", {noremap = true, silent = true})
 local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
 
 function _NCDU_TOGGLE()
