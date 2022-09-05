@@ -174,6 +174,7 @@ require "user/plug-config/coc"
 require "user/plug-config/luasnip"
 require 'user/plug-config/toggleterm'
 require "user/plugins"
+require "user/plug-config/lsp"
 
 require("nvim-lsp-installer").setup {}
 require('lualine').setup()

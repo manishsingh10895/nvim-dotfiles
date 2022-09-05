@@ -36,7 +36,7 @@ vim.cmd([[
 
 vim.api.nvim_set_keymap("n", "gd", ":call CocActionAsync('jumpDefinition')<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "gr", ":call CocActionAsync('jumpReferences')<CR>")
-vim.api.nvim_set_keymap("n", "gt", ":call CocActionAsync('typeDefinitions')<CR>", { noremap = true, silent = true })
+--vim.api.nvim_set_keymap("n", "gt", ":call CocActionAsync('typeDefinitions')<CR>", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "rn", ":call CocActionAsync('rename')<CR>", { noremap = true, silent = true })
 

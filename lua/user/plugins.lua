@@ -58,6 +58,9 @@ use 'onsails/lspkind-nvim' -- Vscode like pictograms
   -- Highlighting
   --use 'RRethy/vim-illuminate'
 
+  -- GIT
+  use { "kdheepak/lazygit.nvim" }
+
   -- Findings
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -68,6 +71,8 @@ use 'onsails/lspkind-nvim' -- Vscode like pictograms
           file_ignore_patterns = {"node_modules", "target"}
         }
       })
+
+      require("telescope").load_extension("lazygit")
     end
     }
 

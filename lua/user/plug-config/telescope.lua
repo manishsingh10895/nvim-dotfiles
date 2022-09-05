@@ -17,3 +17,9 @@ vim.api.nvim_set_keymap('n', '<leader>fb',
 "<cmd>lua require('telescope.builtin').buffers()<cr>",
 {noremap = true}
 )
+
+
+vim.api.nvim_set_keymap('n', '<leader>s', 
+"<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
+{noremap = true}
+)
