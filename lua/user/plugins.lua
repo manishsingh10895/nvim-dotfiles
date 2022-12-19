@@ -1,7 +1,8 @@
 -- PLUGINS
 -- Only required if you have packer configured as `opt`
  vim.cmd [[packadd packer.nvim]]
-return require('packer').startup(function()
+
+ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
@@ -14,7 +15,7 @@ end}
     requires = { 'ryanoasis/vim-devicons' }
   }
 
-use 'onsails/lspkind-nvim' -- Vscode like pictograms
+  use 'onsails/lspkind-nvim' -- Vscode like pictograms
 
   -- File management --
   use 'vifm/vifm.vim'
@@ -27,8 +28,11 @@ use 'onsails/lspkind-nvim' -- Vscode like pictograms
   use 'simrat39/rust-tools.nvim'
 
   -- Productivity --
-  use 'vimwiki/vimwiki'
   use 'jreybert/vimagit'
+
+  -- Markdown -- 
+  use 'godlygeek/tabular'
+  use 'preservim/vim-markdown'
 
   -- Tim Pope Plugins --
   use 'tpope/vim-surround'
@@ -38,6 +42,16 @@ use 'onsails/lspkind-nvim' -- Vscode like pictograms
   use 'evanleck/vim-svelte'
   use { 'neoclide/coc.nvim', branch = 'master' }
 
+  -- Code Actions
+  use {
+  'weilbith/nvim-code-action-menu',
+  after = 'coc.nvim',
+  requires = 'xiyaowong/coc-code-action-menu.nvim',
+  config = function()
+    require 'coc-code-action-menu'
+  end,
+}
+
   -- Syntax Highlighting and Colors --
   use 'PotatoesMaster/i3-vim-syntax'
   use 'kovetskiy/sxhkd-vim'
@@ -46,6 +60,9 @@ use 'onsails/lspkind-nvim' -- Vscode like pictograms
   use 'sheerun/vim-polyglot'
   use 'HerringtonDarkholme/yats.vim'
   use 'Shougo/context_filetype.vim'
+
+  -- Terraform --
+  use 'hashivim/vim-terraform'
 
   -- Junegunn Choi Plugins --
   use 'junegunn/goyo.vim'
@@ -83,17 +100,17 @@ use 'onsails/lspkind-nvim' -- Vscode like pictograms
 
 
   -- LSP Config
-use({
-    "glepnir/lspsaga.nvim",
-    branch = "main",
-    config = function()
-        local saga = require("lspsaga")
+  use({
+      "glepnir/lspsaga.nvim",
+      branch = "main",
+      config = function()
+          local saga = require("lspsaga")
 
-        saga.init_lsp_saga({
-            -- your configuration
-        })
-    end,
-})
+          saga.init_lsp_saga({
+              -- your configuration
+          })
+      end,
+  })
   use { "williamboman/mason.nvim" }
   use {
     "williamboman/nvim-lsp-installer",

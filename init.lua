@@ -14,11 +14,9 @@ vim.cmd([[
     set shellcmdflag=-command
     set shellquote = shellxquote= 
 
-    set guifont=FiraCode\ Nerd\ Font:h16
+    set guifont=FiraCode\ Nerd\ Font:h20
 ]])
 --
-
---o.shell = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 
 
 local fn = vim.fn
@@ -136,9 +134,9 @@ o.splitbelow = true
 
 -- Better folds (don't fold by default)
 o.foldmethod = 'indent'
-o.foldlevelstart = 99
-o.foldnestmax = 3
-o.foldminlines = 1
+--o.foldlevelstart = 99
+--o.foldnestmax = 3
+--o.foldminlines = 1
 
 opt.mouse = "a"
 
@@ -166,15 +164,24 @@ A.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-require "user/packer"
-require "user/maps"
-require "user/plug-config/diagnostics"
-require "user/plug-config/telescope"
-require "user/plug-config/coc"
-require "user/plug-config/luasnip"
-require 'user/plug-config/toggleterm'
-require "user/plugins"
-require "user/plug-config/lsp"
+local modules = {
+"user/maps",
+"user/packer",
+"user/plug-config/vim-terraform",
+"user/plug-config/diagnostics",
+"user/plug-config/telescope",
+"user/plug-config/luasnip",
+'user/plug-config/toggleterm',
+"user/plugins",
+"user/plug-config/coc",
+"user/plug-config/lsp",
+"user/plug-config/go",
+}
+
+for k, v in pairs(modules) do 
+  package.loaded[v] = nil
+  require(v)
+end
 
 require("nvim-lsp-installer").setup {}
 require('lualine').setup()

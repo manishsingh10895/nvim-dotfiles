@@ -56,7 +56,7 @@ function _LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
-vim.api.nvim_set_keymap("n", [[<S-g>]], "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true, })
+vim.api.nvim_set_keymap("n", [[<leader>g]], "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true, })
 
 local powershell = Terminal:new({cmd = "pwsh", hidden = true })
 
@@ -64,7 +64,7 @@ function _PWSH_TOGGLE()
 	powershell:toggle()
 end
 
-vim.api.nvim_set_keymap("n", [[<S-t>]], "<cmd>lua _PWSH_TOGGLE()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", [[<leader>t]], "<cmd>lua _PWSH_TOGGLE()<CR>", {noremap = true, silent = true})
 
 local node = Terminal:new({ cmd = "node", hidden = true })
 
